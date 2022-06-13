@@ -10,6 +10,7 @@
     <!--begin::Global Stylesheets Bundle(used by all pages)-->
     <link href="{{asset('theme/plugins/global/plugins.bundle.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('theme/css/style.bundle.css')}}" rel="stylesheet" type="text/css" />
+
     <!--end::css-->
 
     @yield('header')
@@ -21,18 +22,34 @@
 <script src="{{asset('theme/js/scripts.bundle.js')}}"></script>
 <!--end::Javascript-->
 
-<nav class="navbar navbar-white bg-white justify-content-between mb-5 mt-5">
-    <a class="navbar-brand mx-10">Logo</a>
-
-    <form class="form-inline">
+<nav class="navbar navbar-expand-lg navbar-light bg-light ">
+    <a class="navbar-brand mx-10 ">Logo</a>
+    <div class="collapse navbar-collapse justify-content-end mx-10" id="navbarNavDropdown" >
+    <ul class=" navbar-nav ml-auto ">
         @if(Auth::user())
-            <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">logout</button>
+
+            <li class="nav-item">
+                <a class="btn btn-success" type="submit" href="{{route('login')}}">Espace admin</a>
+            </li>
+           <li class="nav-item">
+               <form method="POST" action="{{route('logout')}}">
+                   @csrf
+                   <button type="submit" class="btn btn-danger">Déconnexion</button>
+               </form>
+           </li>
         @else
-            <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Sign in</button>
-            <button class="btn btn-outline-dark my-2 my-sm-0 bg-primary text-white mx-10" type="submit">Sign up</button>
+            <li class="nav-item">
+                <a class="nav-link" type="submit" href="{{route('login')}}">Sign in</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('register')}}"type="submit">Sign up</a>
+            </li>
         @endif
-    </form>
+    </ul>
+    </div>
+
 </nav>
+
 
 
     @yield('content')
