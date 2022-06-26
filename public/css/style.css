@@ -1,0 +1,42 @@
+
+/*********************
+ *********************
+ HOMEPAGE
+ *********************
+ *********************/
+
+.qr-container{
+    border-radius: 10px;
+    border-top: 5px solid black;
+}
+
+.qr-elements{
+
+    border-radius: 10px;
+    border: 0.5px solid black;
+}
+
+
+.qr-elements a {
+    color: black;
+    font-size: 15px;
+}
+
+.qr-elements a.active{
+ color: blue;
+    border-bottom: 0.5px solid blue;
+}
+
+.navbar-brand img {
+    width:2%;
+}
+
+/*********************
+ *********************
+ My space
+ *********************
+ *********************/
+
+.card{
+    border: 1px solid black;
+}

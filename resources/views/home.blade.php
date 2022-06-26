@@ -7,43 +7,54 @@
 
 @section('content')
 
-   <div class="card card-custom bg-light" >
-       <div class="card-header">
-           <h3 class="card-title">
-              Générateur de Qr code
-           </h3>
-       </div>
-       <!--begin::Form-->
-       <form id="form" method="POST">
-           @csrf
-           <div class="card-body">
-               <div class="form-group row">
-                   <label for="example-url-input" class="col-2 col-form-label">URL</label>
-                   <div class="col-10">
-                       <input class="form-control" type="url" name="url"value="{{$link}}"  id="example-url-input"/>
-                   </div>
-               </div>
+        <h1 class="display-4 text-center mt-15 mb-7">Générateur de QR Code</h1>
 
-           </div>
-           <div class="card-footer">
-               <div class="row">
-                   <div class="col-2">
-                   </div>
-                   <div class="col-10">
-                       <input id= "test" type="submit" class="btn btn-success mr-2 w-250px" value="Générer un nouveau QR code">
-                   </div>
-               </div>
-           </div>
-       </form>
-   </div>
+        <div class="d-flex justify-content-center mb-13">
+            <p class="mx-5">Gratuit et clé en main</p>
+            <p class="mx-5">Personnalisation facile</p>
+            <p class="mx-5">Utilisation illimitée</p>
+        </div>
 
-   <div class="card text-center h-100 bg-light">
+        <div class="container-fluid" >
+            <div class="container d-flex justify-content-center  " >
 
-       <div class="card-body">
-           {!! QrCode::size(250)->generate($link) !!}
-       </div>
+                    <div class="qr-container d-flex justify-content-evenly align-items-center flex-lg-row flex-sm-column bg-light w-75 py-20 " >
 
-   </div>
+                        <div class="qr-elements py-10 px-20">
+                            <div class="qr-type d-flex justify-content-between mt-5 mb-20">
+                                <a class="active" href="#" id="url" >URL</a>
+                                <a href="#">AUTRE TYPES</a>
+                            </div>
+
+                            <form  method="post">
+                                @csrf
+                                <input type="text" class="form-control mb-8 " size="35" name ='url' placeholder="https//" value="{{$link}}" >
+                                <button class="btn btn-success" type="submit"> Valider </button>
+                            </form>
+                        </div>
+
+
+                        <div class="qr-code  ">
+                            {!! QrCode::size(200)->generate($link) !!}
+                        </div>
+
+                    </div>
+
+
+            </div>
+        </div>
+
+
+
+        <script>
+            $(document).ready(function(){
+                $('a').on('click', function (){
+                    $(this).siblings().removeClass('active');
+                    $(this).addClass('active');
+                })
+
+            })
+        </script>
 
 
 
