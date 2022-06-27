@@ -3,6 +3,10 @@
 @extends('layouts.app')
 
 
+@section('header')
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+
+@endsection
 
 
 @section('content')
@@ -13,7 +17,7 @@
     <div class="card w-25 mx-10 d-sm-flex justify-content-center">
         <div class="card-body">
             <h5 class="card-title mb-10">Created Elements</h5>
-            <p class="card-text">{{ $countqr }}</p>
+            <p class="card-text">{{ $currentuser->$countqr }}</p>
         </div>
     </div>
 
@@ -25,7 +29,7 @@
         <!--begin::Table container-->
         <div class="table-responsive">
             <!--begin::Table-->
-            <table class="table table-row-bordered table-row-gray-100 align-middle gs-0 gy-3">
+            <table class="table table-row-bordered table-row-gray-100 align-middle  gy-3 " id="example">
                 <!--begin::Table head-->
                 <thead>
                 <tr class="fw-bolder text-muted">
@@ -45,7 +49,7 @@
                 <!--end::Table head-->
                 <!--begin::Table body-->
                 <tbody>
-                @foreach($qrcodes as $qrcode)
+                @foreach($currentuser->qrcodes as $currentuser->qrcode)
 
                 <tr>
                     <td>
@@ -54,14 +58,14 @@
                         </div>
                     </td>
                     <td>
-                        <a href="#" class="text-dark fw-bolder text-hover-primary fs-6"> {!! QrCode::size(50)->generate($qrcode->url) !!}</a>
+                        <a href="#" class="text-dark fw-bolder text-hover-primary fs-6"> {!! QrCode::size(50)->generate($currentuser->qrcode->url) !!}</a>
                     </td>
                     <td>
-                        <a href="#" class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6">{{$qrcode->name}}</a>
+                        <a href="#" class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6">{{$currentuser->qrcode->name}}</a>
 
                     </td>
                     <td>
-                        <a href="#" class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6">{{$qrcode->created_at}}</a>
+                        <a href="#" class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6">{{$currentuser->qrcode->created_at}}</a>
                     </td>
                     <td>
                         <span class="badge badge-light-primary">URL</span>
@@ -69,7 +73,7 @@
                     </td>
 
                     <td>
-                        <a href="#" class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6">{{$qrcode->url}}</a>
+                        <a href="#" class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6">{{$currentuser->qrcode->url}}</a>
                     </td>
                     <td class="text-end">
                         <a href="#" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
@@ -117,6 +121,24 @@
     <!--begin::Body-->
 
 
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
 
+
+
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable({
+            'lengthMenu': [5, 10, 20],
+
+        });
+
+
+
+    });
+</script>
 
 @endsection
+
+

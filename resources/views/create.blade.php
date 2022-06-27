@@ -3,6 +3,7 @@
 @section('content')
 
 
+
     <h1 class="display-4 text-center mt-15 mb-7">Générateur de QR Code</h1>
 
     <div class="d-flex justify-content-center mb-13">
@@ -42,6 +43,7 @@
                             {{$message}}
                             @enderror
                         </div>
+
 
                         <button class="btn btn-success" type="submit"> Valider </button>
                     </form>

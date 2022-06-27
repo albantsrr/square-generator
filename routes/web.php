@@ -24,9 +24,9 @@ Route::post('/',[HomeController::class, 'index']);
 
 
 
-Route::get('/myspace', [MyspaceController::class, 'index'])->name('myspace');
-Route::get('/myspace/create', [MyspaceController::class, 'create'])->name('myspace.create');
-Route::post('/myspace/store', [MyspaceController::class, 'store'])->name('myspace.store');
+Route::get('/myspace', [MyspaceController::class, 'index'])->name('myspace')->middleware('auth');
+Route::get('/myspace/create', [MyspaceController::class, 'create'])->name('myspace.create')->middleware('auth');
+Route::post('/myspace/store', [MyspaceController::class, 'store'])->name('myspace.store')->middleware('auth');
 
 
 

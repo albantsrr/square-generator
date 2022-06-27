@@ -6,6 +6,7 @@ use App\Http\Requests\MyspaceRequest;
 use App\Models\Qrcode;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class MyspaceController extends Controller
 {
@@ -17,11 +18,11 @@ class MyspaceController extends Controller
     public function index()
     {
         $countqr = DB::table('qrcodes')->count();
-        $qrcodes = Qrcode::all();
+        $currentuser = Auth::user();
 
         return view('myspace', [
             'countqr' => $countqr,
-            'qrcodes' => $qrcodes
+            'currentuser' => $currentuser
         ]);
     }
 
@@ -32,6 +33,10 @@ class MyspaceController extends Controller
      */
     public function create(Request $request)
     {
+        $qrcode = Qrcode::all();
+        $qrcode->user_id = Auth::id();
+
+
         return view('create');
     }
 
@@ -97,4 +102,11 @@ class MyspaceController extends Controller
     {
         //
     }
+
+    /**
+     * The "booted" method of the model.
+     *
+     * @return void
+     */
+
 }

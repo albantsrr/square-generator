@@ -44,7 +44,7 @@ class User extends Authenticatable
 
     public function qrcodes()
     {
-        return $this->asMany(Qrcode::class);
+        return $this->hasMany(Qrcode::class);
     }
 }
 
