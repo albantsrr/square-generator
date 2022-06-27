@@ -19,8 +19,9 @@ class MyspaceController extends Controller
     {
         $countqr = DB::table('qrcodes')->count();
         $currentuser = Auth::user();
+        $qrcode = Qrcode::all();
 
-        return view('myspace', [
+        return view('myspace.index', [
             'countqr' => $countqr,
             'currentuser' => $currentuser
         ]);
@@ -37,7 +38,7 @@ class MyspaceController extends Controller
         $qrcode->user_id = Auth::id();
 
 
-        return view('create');
+        return view('myspace.create');
     }
 
     /**
@@ -54,7 +55,7 @@ class MyspaceController extends Controller
             'name' => $request->input('name'),
             'url' => $request->input('url')
         ]);
-        return redirect()->route('myspace');
+        return redirect()->route('myspace')->with('success', "The Qr code has been saved");
 
     }
 
@@ -75,9 +76,11 @@ class MyspaceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Qrcode $qrcode)
     {
-        //
+        return view('myspace.edit',[
+            'qrcode' => $qrcode
+        ]);
     }
 
     /**
@@ -87,9 +90,13 @@ class MyspaceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(MyspaceRequest $request, Qrcode $qrcode)
     {
-        //
+        $qrcode->name = $request->input('name');
+        $qrcode->url = $request->input('url');
+        $qrcode->save();
+        return redirect()->route('myspace.index')->with('warning', "The Qr code has been modified");
+
     }
 
     /**
@@ -98,9 +105,10 @@ class MyspaceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Qrcode $qrcode)
     {
-        //
+        $qrcode->delete();
+        return redirect()->route('myspace.index')->with('danger', "The Qr code has been removed");
     }
 
     /**

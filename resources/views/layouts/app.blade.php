@@ -18,6 +18,8 @@
 </head>
 <body class="bg-white">
 
+
+
 <!--begin::Global Javascript Bundle(used by all pages)-->
 <script src="{{asset('theme/plugins/global/plugins.bundle.js')}}"></script>
 <script src="{{asset('theme/js/scripts.bundle.js')}}"></script>
@@ -30,7 +32,7 @@
         @if(Auth::user())
 
             <li class="nav-item">
-                <a class="nav-link btn btn-none" type="submit" href="{{route('myspace')}}">My space </a>
+                <a class="nav-link btn btn-none" type="submit" href="{{route('myspace.index')}}">My space </a>
             </li>
            <li class="nav-item">
                <form method="POST" action="{{route('logout')}}">
@@ -52,6 +54,9 @@
 </nav>
 
 
+<div class="container-fluid mt-5 h-15">
+    @include("incs.flash")
+</div>
 
     @yield('content')
 

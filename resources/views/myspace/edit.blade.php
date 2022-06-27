@@ -4,13 +4,8 @@
 
 
 
-    <h1 class="display-4 text-center mt-15 mb-7">Générateur de QR Code</h1>
+    <h1 class="display-4 text-center mt-15 mb-15">Edit your Qr Code</h1>
 
-    <div class="d-flex justify-content-center mb-13">
-        <p class="mx-5">Gratuit et clé en main</p>
-        <p class="mx-5">Personnalisation facile</p>
-        <p class="mx-5">Utilisation illimitée</p>
-    </div>
 
     <div class="container-fluid" >
         <div class="container d-flex justify-content-center  " >
@@ -25,27 +20,27 @@
 
 
 
-                    <form  method="post" action="{{route('myspace.store')}}">
+                    <form  method="post" action="{{route('myspace.update', $qrcode->id)}}">
+                        @method("PUT")
                         @csrf
-
                         <div class="form-group">
                             <label for="name">Nom</label>
-                            <input type="text" class="form-control mb-8 " size="35" name ='name' placeholder="ex: le nom de votre société" value="" >
+                            <input type="text" class="form-control mb-8 " size="35" name ='name' placeholder="ex: le nom de votre société" value="{{$qrcode->name}}" >
                             @error('name')
-                                {{$message}}
+                            {{$message}}
                             @enderror
                         </div>
 
                         <div class="form-group">
                             <label for="name">URL</label>
-                            <input type="text" class="form-control mb-8 " size="35" name ='url' placeholder="https//" value="" >
+                            <input type="text" class="form-control mb-8 " size="35" name ='url' placeholder="https//" value="{{$qrcode->url}}" >
                             @error('url')
                             {{$message}}
                             @enderror
                         </div>
 
 
-                        <button class="btn btn-success" type="submit"> Valider </button>
+                        <button class="btn btn-success" type="submit"> Save the changes </button>
                     </form>
                 </div>
 
