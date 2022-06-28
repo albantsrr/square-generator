@@ -20,7 +20,7 @@
 
 
 
-                    <form  method="post" action="{{route('myspace.store')}}">
+                    <form  method="post" action="{{route('myspace.store')}}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group">
@@ -45,9 +45,11 @@
                 </div>
 
 
-                <div class="qr-code  ">
+
                     {!! QrCode::size(200)->generate('https://preview.keenthemes.com/metronic8/demo1/widgets/tables.html') !!}
-                </div>
+
+
+
 
             </div>
 

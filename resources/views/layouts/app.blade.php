@@ -26,7 +26,7 @@
 <!--end::Javascript-->
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light py-5">
-    <a class="navbar-brand mx-10 w-25" href="{{route('home')}}"><img src="{{asset('img/qrcode.png')}}" class="w-30px"></a>
+    <a class="navbar-brand mx-10 " href="{{route('home')}}"><img src="{{asset('img/qrcode.png')}}" class="w-30px"></a>
     <div class="collapse navbar-collapse justify-content-end mx-10" id="navbarNavDropdown" >
     <ul class="navbar-nav ml-auto ">
         @if(Auth::user())

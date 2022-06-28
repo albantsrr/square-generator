@@ -6,8 +6,8 @@
     <div class="d-flex flex-center flex-column flex-column-fluid p-10 pb-lg-20">
 
         <!--begin::Logo-->
-        <a href="{{route('home')}}" class="mb-12">
-            <img alt="Logo" src="{{asset('img/logo.svg')}}" class="h-40px" />
+        <a href="{{route('home')}}" class="mb-5">
+            <img alt="Logo" src="{{asset('img/qrcode.png')}}" class="h-30px" />
         </a>
         <!--end::Logo-->
 

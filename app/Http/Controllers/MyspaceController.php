@@ -4,12 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\MyspaceRequest;
 use App\Models\Qrcode;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use SimpleSoftwareIO\QrCode\Facades\QrCode as Qr;
 
 class MyspaceController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -34,10 +38,6 @@ class MyspaceController extends Controller
      */
     public function create(Request $request)
     {
-        $qrcode = Qrcode::all();
-        $qrcode->user_id = Auth::id();
-
-
         return view('myspace.create');
     }
 
@@ -47,16 +47,23 @@ class MyspaceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(MyspaceRequest $request)
+    public function store(MyspaceRequest $request, Qrcode $qrcode)
     {
+        $currentuser = Auth::user();
+
+        $userid = $currentuser->id;
+        $url = $request->input('url');
+        $name =  $request->input('name');
+        Storage::disk('local')->put("qrcodes/$userid-$name.png",  Qr::format('png')->size(200)->generate($url));
+
         $validated = $request->validated();
 
         Qrcode::create([
-            'name' => $request->input('name'),
-            'url' => $request->input('url')
+            'url' => $url,
+            'name' => $name,
+            'qrcode' => $qrcode
         ]);
-        return redirect()->route('myspace')->with('success', "The Qr code has been saved");
-
+        return redirect()->route('myspace.index')->with('success', "The Qr code has been created");
     }
 
     /**
@@ -67,7 +74,16 @@ class MyspaceController extends Controller
      */
     public function show($id)
     {
-        //
+        $userid = Auth::user()->id;
+
+       $dl = Qrcode::find($id);
+
+       $dlname = $dl->name;
+
+        return Storage::download("qrcodes/$userid-$dlname.png", "Your download");
+
+
+
     }
 
     /**
@@ -110,6 +126,7 @@ class MyspaceController extends Controller
         $qrcode->delete();
         return redirect()->route('myspace.index')->with('danger', "The Qr code has been removed");
     }
+
 
     /**
      * The "booted" method of the model.

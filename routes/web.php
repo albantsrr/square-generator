@@ -30,6 +30,7 @@ Route::get('/myspace/{qrcode:id}/edit', [MyspaceController::class, 'edit'])->nam
 Route::post('/myspace/store', [MyspaceController::class, 'store'])->name('myspace.store')->middleware('auth');
 Route::put('/myspace/{qrcode:id}/update', [MyspaceController::class, 'update'])->name('myspace.update')->middleware('auth');
 Route::delete('/myspace/{qrcode:id}/delete', [MyspaceController::class, 'destroy'])->name('myspace.delete')->middleware('auth');
+Route::get('myspace/download/{qrcode:id}', [MyspaceController::class,'show'])->name('myspace.download')->middleware('auth');
 
 
 
