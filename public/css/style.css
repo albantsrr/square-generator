@@ -1,42 +1,137 @@
 
 /*********************
  *********************
- HOMEPAGE
+ Global
  *********************
  *********************/
 
-.qr-container{
-    border-radius: 10px;
-    border-top: 5px solid black;
-}
 
-.qr-elements{
-
-    border-radius: 10px;
-    border: 0.5px solid black;
+.download:hover{
+    color:blue;
 }
 
 
-.qr-elements a {
-    color: black;
-    font-size: 15px;
+.btn-darkblue{
+    background: #222747;
+    color: white;
 }
 
-.qr-elements a.active{
- color: blue;
-    border-bottom: 0.5px solid blue;
-}
-
-.navbar-brand img {
-    width:2%;
+.btn-darkblue:hover
+{
+    color: white;
 }
 
 /*********************
  *********************
- My space
+ NAV
+ *********************
+ *********************/
+
+
+
+
+.logo
+{
+    margin-right: 15px;
+}
+
+
+.navbar-brand {
+    font-size: 1.2em;
+    font-weight: bolder;
+    color: red;
+}
+
+#sign-up{
+    background: #222747;
+    border-radius: 10px;
+    color: white;
+    margin-left: 10px;
+}
+
+
+#sign-up a {
+    color: white;
+}
+
+#sign-in a
+{
+     color : #222747;
+    border-radius: 0;
+    font-weight: bold;
+}
+
+#sign-in a:hover
+{
+ color: blue;
+}
+
+#sign-in{
+    padding: 0;
+}
+
+
+
+/*********************
+ *********************
+ HOMEPAGE
+ *********************
+ *********************/
+
+
+h1{
+    color: 	#222747;
+}
+
+.qr-container{
+    border-radius: 10px;
+    border-top: 5px solid #222747;
+
+}
+
+.qr-elements{
+
+
+    border-right:0.5px solid #222747 ;
+    border-left:0.5px solid #222747 ;
+
+}
+
+
+.qr-elements a {
+    color: #222747;
+    font-size: 15px;
+}
+
+.qr-elements a.active{
+    color: blue;
+    border-bottom: 0.5px solid blue;
+
+}
+
+
+p.h4{
+    color: darkgray;
+}
+
+/*********************
+ *********************
+ My space index
  *********************
  *********************/
 
 .card{
     border: 1px solid black;
+}
+
+
+@media screen and (max-width: 1280px)
+{
+    .qr-elements{
+
+        border-radius: 10px;
+        border: 0px solid black;
+        border-bottom: 0.5px solid black;
+        border-top: 0.5px solid black;
+    }
 }

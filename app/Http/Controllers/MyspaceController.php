@@ -21,9 +21,9 @@ class MyspaceController extends Controller
      */
     public function index()
     {
-        $countqr = DB::table('qrcodes')->count();
+        $countqr = Auth::user()->qrcodes->count();
         $currentuser = Auth::user();
-        $qrcode = Qrcode::all();
+
 
         return view('myspace.index', [
             'countqr' => $countqr,

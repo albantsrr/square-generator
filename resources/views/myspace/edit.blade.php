@@ -10,10 +10,10 @@
     <div class="container-fluid" >
         <div class="container d-flex justify-content-center  " >
 
-            <div class="qr-container d-flex justify-content-evenly align-items-center flex-lg-row flex-sm-column bg-light w-75 py-15 " >
+            <div class="qr-container row bg-light w-75 py-10 d-lg-flex justify-content-evenly align-items-center " >
 
-                <div class="qr-elements py-10 px-20">
-                    <div class="qr-type d-flex justify-content-between mt-5 mb-10">
+                <div class="qr-elements py-5 col-lg-6  px-10">
+                    <div class="qr-type d-flex justify-content-between mt-3 mb-10">
                         <a class="active" href="#" id="url" >URL</a>
                         <a href="#">AUTRE TYPES</a>
                     </div>
@@ -24,7 +24,7 @@
                         @method("PUT")
                         @csrf
                         <div class="form-group">
-                            <label for="name">Nom</label>
+                            <label for="name">Name</label>
                             <input type="text" class="form-control mb-8 " size="35" name ='name' placeholder="ex: le nom de votre société" value="{{$qrcode->name}}" >
                             @error('name')
                             {{$message}}
@@ -40,13 +40,13 @@
                         </div>
 
 
-                        <button class="btn btn-success" type="submit"> Save the changes </button>
+                        <button class="btn btn-darkblue" type="submit"> Save the changes </button>
                     </form>
                 </div>
 
 
-                <div class="qr-code  ">
-                    {!! QrCode::size(200)->generate('https://preview.keenthemes.com/metronic8/demo1/widgets/tables.html') !!}
+                <div class="qr-code w-auto h-auto  col-lg-6 py-10 ">
+                    {!! QrCode::size(220)->color(34, 39, 71)->generate("https://laracasts.com/discuss/channels/laravel/laravel-asset-helper-function-not-working-on-live-server?page=1&replyId=437135") !!}
                 </div>
 
             </div>
